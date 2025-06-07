@@ -1,0 +1,75 @@
+package com.tcs;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class LoginPage extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+   
+    public LoginPage() {
+        super();
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//General setting
+		response.setContentType("text/html");
+		PrintWriter writer = response.getWriter();
+		
+		//getting data from request 
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		//method 1
+		if(username.equals("adinath") && password.equals("chavan")) {
+			writer.println(" Login successfull........"+username);
+		}else {
+			writer.println("Invalid credentials......please enter valid data !");
+		}
+		
+		//method 2
+		/*if(username.equals("adinath") && password.equals("chavan")) {
+			response.sendRedirect("http://www.tcs.com");
+		}else {
+			response.sendError(808,"invalid credentials.... please enter valid data!");
+		}*/
+		
+		//method 3
+		/*if(username.equals("adinath") && password.equals("chavan")) {
+		 	RequestDispatcher dispacher = request.getRequestDispatcher("success.html");
+		 	dispacher.forward(request, response);
+
+			
+		}else {
+		 	RequestDispatcher dispacher = request.getRequestDispatcher("fail.html");
+		 	dispacher.forward(request, response);
+		}*/
+		
+		//method 4
+		/*if(username.equals("adinath") && password.equals("chavan")) {
+		 	writer.println("<a href='http://www.facebook.com'> click here to get facebook </a>");
+			
+		}else {
+		 	writer.println("<a href='FailServlet'>click here to get fail info</a>");
+		}*/
+		
+		
+		
+		}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
