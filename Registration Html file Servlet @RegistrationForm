@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Customer Details....</title>
+</head>
+<body>
+<form method="post" action="CustomerInfo">
+<p> First Name : <input type="text" name="firstname"></p><br><br>
+
+<p> Last Name :  <input type="text" name="lastname"></p><br><br>
+
+<p> Mobile no : <input type="text" name="mobileno"></p><br><br>
+
+<p> Email id : <input type="text" name="emailid"></p><br><br>
+
+<p> village : <input type="text" name="t1"></p><br>
+<p> area : <input type="text" name ="t2"></p><br>
+<p> home no : <input type="text" name="t3"></p><br><br>
+
+<p><input type="submit" name="Register"><p>
+
+<a href="./DisplayDetails">Click here to see existing details....</a><br>
+
+</form>
+
+
+</body>
+</html>
