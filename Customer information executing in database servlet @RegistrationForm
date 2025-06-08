@@ -1,0 +1,76 @@
+package com.company;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class CustomerInfo extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+   
+    public CustomerInfo() {
+        super();
+    }
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  doPost(request, response);
+	}
+
+
+	
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter writer = response.getWriter();
+		
+		String firstname= request.getParameter("firstname");
+		String lastname= request.getParameter("lastname");
+		String mobileno= request.getParameter("mobileno");
+		String emailid= request.getParameter("emailid");
+		String[] addr= request.getParameterValues("t1");
+		
+		StringBuffer buffer = new StringBuffer();
+		
+		for( String data : addr) {
+				buffer.append(data+", ");
+		}
+		
+		String caddr = buffer.toString();
+		
+		
+		try { 		
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","java");
+			
+			PreparedStatement statement = connect.prepareStatement("insert into customer values(?,?,?,?,?)");
+			
+			statement.setString(1, firstname);
+			statement.setString(2, lastname);
+			statement.setString(3, mobileno);
+			statement.setString(4, emailid);
+			statement.setString(5, caddr);
+			
+			int x =statement.executeUpdate();
+			
+			if(x==1) {
+				writer.println(" record added successfull ...");
+				writer.println("<a href='./DisplayDetails'> click here to see all records... </a>");
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			}
+				
+	}
+
+}
