@@ -1,0 +1,42 @@
+package com.company;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class RegServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    
+    public RegServlet() {
+        super();
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter writer = response.getWriter();
+		
+		String name = request.getParameter("uname");
+		String age = request.getParameter("uage");
+		String addr = request.getParameter("uaddr");
+		
+		writer.println("-----------your licence details ------------"+"<br>");
+		
+		writer.println("Your name : "+name.toUpperCase()+"<br>");
+		writer.println("Your age : "+age+"<br>");
+		writer.println("your addr : "+addr.toUpperCase()+"<br>");
+		
+		writer.println("YOUR LICENCE WILL GENERATED AS SOON AS POSSIBLE ......."+"<br>");
+		writer.println("Thanks for visiting MH09.....! ");
+	}
+
+}
